@@ -8,10 +8,6 @@ A power-law distribution is a mathematical form that describes the relationship 
 
 Detecting power-law behavior in data is challenging due to the large fluctuations in the tail of the distribution, where rare but large events occur, and the difficulty in identifying the range over which the power-law behavior holds.
 
-### **Power Law Distribution**
-
-![[Power Law Distribution.png]]
-
 ### $ξ_1$ and $ξ_2$
 
 The terms $ξ_1$ and $ξ_2$​ represent length scales associated with the sizes of clusters formed in motor-driven active gels. The research investigates how molecular motors can induce contraction in crosslinked actin networks, forming clusters that exhibit a scale-free size distribution indicative of critical behavior.
