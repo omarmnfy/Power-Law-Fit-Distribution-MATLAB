@@ -89,4 +89,3 @@ To use the `plfit` and `plpva` functions, follow these steps:
    git clone https://github.com/omarmnfy/Power-Law-Fit-Distribution-MATLAB.git
    cd Power-Law-Fit-Distribution-MATLAB
 ```
-
