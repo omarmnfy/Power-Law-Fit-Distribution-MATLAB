@@ -27,17 +27,17 @@ In the continuous case, the variable $x$ can take any real value above a certain
 
 #### Discrete Power-Law Distribution
 
-In the discrete case, the variable xxx takes discrete values, typically positive integers. The probability mass function (PMF) for a discrete power-law distribution is given by $p(x) = \frac{x^{-\alpha}}{\zeta(\alpha, x_{min})}$, where ${\zeta(\alpha, x_{min})}$ is the generalized or Hurwitz zeta function, ensuring the probabilities sum to 1 overall $x \geq x_{min}$.
+In the discrete case, the variable $x$ takes discrete values, typically positive integers. The probability mass function (PMF) for a discrete power-law distribution is given by $p(x) = \frac{x^{-\alpha}}{\zeta(\alpha, x_{min})}$, where ${\zeta(\alpha, x_{min})}$ is the generalized or Hurwitz zeta function, ensuring the probabilities sum to 1 overall $x \geq x_{min}$.
 
 ## Importance of Power-Law Distributions
 
 Power-law distributions are crucial because they often describe the distribution of various types of data, such as:
 
-- Earthquake magnitudes
-- Word frequencies in natural language
-- Wealth distribution
-- Sizes of cities and towns
-- Internet traffic patterns
+1. Earthquake magnitudes.
+2. Word frequencies in natural language.
+3. Wealth distribution.
+4. Sizes of cities and towns.
+5. Internet traffic patterns.
 
 Understanding power-law distributions allows researchers and analysts to better comprehend the underlying mechanisms that generate such data and to make more accurate predictions and models.
 
@@ -49,9 +49,27 @@ The `plfit` function fits a power-law distribution to empirical data using maxim
 
 #### Key Features:
 
-- Estimates the scaling parameter $\alpha$.
-- Identifies the lower bound $x_{min}$.
-- Provides diagnostics for assessing the fit quality.
+1. Estimates the scaling parameter $\alpha$.
+2. Identifies the lower bound $x_{min}$.
+3. Provides diagnostics for assessing the fit quality.
+
+### Mathematical Calculations for `plfit` Function
+
+#### Continuous Case (REAL)
+
+In the continuous case, the power-law distribution is represented as $p(x) = Cx^{-\alpha}$, where $\alpha$ is the scaling parameter and $C$ is the normalization constant. The goal is to estimate $\alpha$ and $x_{min}$ using maximum likelihood estimation (MLE).
+
+1. **Normalization Constant**: The normalization constant $C$ ensures that the total probability integrates to 1 over the range  $x \geq x_{min}$: $C = (\alpha - 1)x_{min}^{(\alpha-1)}$.
+2. **Maximum Likelihood Estimation for $\alpha$**: Given a set of observed values $x_{i}$ such that $x_i \geq x_{min}$, the MLE for the scaling parameter $\alpha$ is $\hat{\alpha} = 1+n\left[ \sum_{i=1}^n \ln \left( \frac{x_i}{x_{\min}} \right) \right]^{-1}$, where $n$ is the number of observations with $x \geq x_{min}$.
+3. **Estimating $x_{min}$**: 1. To find the optimal $x_{min}$, the function iteratively tests different values of $x_{min}$​ and selects the one that minimizes the Kolmogorov-Smirnov (KS) statistic, which measures the distance between the empirical distribution function and the fitted power-law model.
+
+#### Discrete Case (INTS)
+
+In the discrete case, the power-law distribution is represented as $p(x) = \frac{x^{-\alpha}}{\zeta(\alpha, x_{min})}$, where ${\zeta(\alpha, x_{min})}$ is the Hurwitz zeta function.
+
+1. **Hurwitz Zeta Function**: The Hurwitz zeta function is defined as ${\zeta(\alpha, x_{min})} = \sum_{n=0}^{\infty} (n + x_{\min})^{-\alpha}$.
+2. **Maximum Likelihood Estimation for $\alpha$**: For discrete data, the MLE for $\alpha$ is found by solving the following equation numerically $\frac{\zeta'(\hat{\alpha}, x_{\min})}{\zeta(\hat{\alpha}, x_{\min})} = - \frac{1}{n} \sum_{i=1}^n \ln x_i$, where $\zeta'(\hat{\alpha}, x_{\min})$ is the derivative of the Hurwitz zeta function with respect to $\alpha$.
+3. **Estimating $x_{min}$**: Similar to the continuous case, the optimal $x_{min}$ is determined by iteratively testing different values and minimizing the KS statistic.
 
 ### `plpva` Function
 
@@ -59,13 +77,57 @@ The `plpva` function performs a statistical test to determine whether the power-
 
 #### Key Features:
 
-- Computes the p-value for the power-law fit.
-- Generates synthetic datasets for comparison.
-- Assesses the statistical significance of the fit.
+1. Computes the p-value for the power-law fit.
+2. Generates synthetic datasets for comparison.
+3. Assesses the statistical significance of the fit.
+
+### Mathematical Calculations for `plpva` Function
+
+### Steps:
+#### 1. Goodness-of-Fit (GoF) Statistic Calculation
+
+The GoF statistic is the maximum absolute difference between the empirical cumulative distribution function (CDF) and the fitted CDF. This is similar to the Kolmogorov-Smirnov (K-S) statistic. The K-S statistic measures the maximum absolute difference between the empirical CDF and the theoretical CDF. This helps assess how well the power-law model fits the data.
+
+The CDF of a random variable $X$ is a function that maps values to their cumulative probabilities. For a given value $x$, the CDF $F(x)$ gives the probability that the random variable $X$ is less than or equal to $x$.
+
+#### Significance of the CDF
+
+The CDF provides a complete description of the distribution of a random variable. It allows us to calculate the probability that the random variable falls within a certain range. It’s useful for comparing different distributions and for goodness-of-fit tests.
+#### Continuous Case (REAL)
+
+$\text{Goodness of Fit (GoF)} = \max \left| \frac{i-1}{n_z} - \left( 1 - \left( \frac{x_{\text{min}}}{z_i} \right)^{\alpha - 1} \right) \right|$, where $n_z$ is the number of data points, $z ≥ x_{min}$​, $z_i$ is the sorted data points $z$, and $\alpha = 1 + \frac{n_z}{\sum_{i=1}^{n_z} \ln\left(\frac{z_i}{x_{\text{min}}}\right)}$.
+
+#### Discrete Case (INTS)
+
+For integer-valued data, $α$ is estimated using the method of maximum likelihood, where $L(\alpha) = -\alpha \sum_{i=1}^{n_z} \ln(z_i) - n_z \ln\left( \zeta(\alpha) - \sum_{x=1}^{x_{\text{min}}-1} x^{-\alpha} \right)$.
+
+Here, $α$ is the value that maximizes the log-likelihood $L(α)$. $\zeta(\alpha)$ is the Riemann zeta function, which is defined as $\zeta(\alpha) = \sum_{k=1}^\infty k^{-{\alpha}}$
+
+$\text{Goodness of Fit (GoF)} = \max \left| \text{CDF}_{\text{empirical}}(z_i) - \text{CDF}_{\text{fitted}}(z_i) \right|$, where the fitted CDF for integer data is calculated using the discrete power-law distribution.
+
+#### 2. Bootstrapping Procedure
+
+1. **Generate Synthetic Data:** Generate synthetic datasets under the null hypothesis that the data follows a power-law distribution. For each bootstrap sample, generate synthetic data that follows the power-law distribution with parameters ( $\alpha$) and ($x_{min}$) estimated from the empirical data.
+
+2. **Calculate GoF for Synthetic Data:** Calculate the GoF statistic for each synthetic dataset in the same way as for the empirical data.
+
+3. **Compare GoF Statistics:** Compare the GoF statistic of the empirical data to the distribution of GoF statistics from the synthetic datasets.
+
+#### 3. p-value Calculation
+
+The p-value is the proportion of bootstrap GoF statistics that are greater than or equal to the empirical Goodness of Fit (GoF) statistic, such that $p = \frac{1}{B} \sum_{i=1}^{B} \mathbb{I}(\text{GoF}_i \geq \text{GoF}_{\text{empirical}})$, where $B$ is the number of bootstrap samples, $\mathbb{I}(.)$ is the indicator function, which is 1 if the condition is true and 0 otherwise, $GoF$ is the GoF statistic for the $i$-th bootstrap sample, and $GoF_{empirical}$ is the GoF statistic for the empirical data.
+
+### Determination of p-value Factors
+
+1. Estimating the scaling parameter ($α$) and the lower bound ($x_{min}$​) using the `plfit` function.
+2. Calculating the GoF statistic for the empirical data.
+3. Generating multiple synthetic datasets (typically 1000) that follow the power-law distribution with the estimated parameters.
+4. Calculating the GoF statistic for each synthetic dataset.
+5. Determining the proportion of synthetic GoF statistics that are greater than or equal to the empirical GoF statistic, which gives the p-value.
 
 ### Applying the Research
 
-The `plfit` and `plpva` functions implemented in this project utilize the methodologies described in the paper:
+The `plfit` and `plpva` functions implemented in this project utilize the methodologies described in the power-fit distribution original paper; Maximum Likelihood Estimation (MLE) and Goodness-of-Fit Tests.
 
 1. **Maximum Likelihood Estimation (MLE)**: Used for fitting the power-law model to the data, providing robust parameter estimates.
 2. **Goodness-of-Fit Tests**: Based on the KS statistic, these tests help determine the plausibility of the power-law model.
@@ -74,16 +136,14 @@ The MATLAB code provided in this project closely follows the algorithms and stat
 
 ## Benefits of Power-Law Fitting
 
-- **Identifying Patterns:** By fitting power-law distributions, we can identify patterns in data that are not apparent with other distributions.
-- **Modeling Complex Systems:** Power-law models are instrumental in understanding and modeling complex systems with scale-invariant properties.
-- **Predictive Analysis:** Accurate power-law fits allow for better predictive analysis in fields such as finance, risk assessment, and network analysis.
-- **Informing Policy and Decision Making:** Insights from power-law fits can inform policy decisions in economics, urban planning, and disaster management.
+1. **Identifying Patterns:** By fitting power-law distributions, we can identify patterns in data that are not apparent with other distributions.
+2. **Modeling Complex Systems:** Power-law models are instrumental in understanding and modeling complex systems with scale-invariant properties.
+3. **Predictive Analysis:** Accurate power-law fits allow for better predictive analysis in fields such as finance, risk assessment, and network analysis.
+4. **Informing Policy and Decision Making:** Insights from power-law fits can inform policy decisions in economics, urban planning, and disaster management.
 
 ## Usage
 
-To use the `plfit` and `plpva` functions, follow these steps:
-
-1. Clone this repository:
+To use the `plfit` and `plpva` functions, clone this repository.
 
    ```bash
    git clone https://github.com/omarmnfy/Power-Law-Fit-Distribution-MATLAB.git
