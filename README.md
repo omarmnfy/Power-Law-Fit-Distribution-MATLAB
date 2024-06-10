@@ -104,7 +104,7 @@ For integer-valued data, $α$ is estimated using the method of maximum likelihoo
 
 Here, $α$ is the value that maximizes the log-likelihood $L(α)$. $\zeta(\alpha)$ is the Riemann zeta function, which is defined as $\zeta(\alpha) = \sum\limits_{k=1}^\infty k^{-\alpha}$.
 
-$\text{Goodness of Fit (GoF)} = \max \left| \text{CDF}_{\text{empirical}}(z_i) - \text{CDF}_{\text{fitted}}(z_i) \right|$, where the fitted CDF for integer data is calculated using the discrete power-law distribution.
+$\mathrm{Goodness\ of\ Fit\ (GoF)} = \max \left| \mathrm{CDF}_{\mathrm{empirical}}(z_i) - \mathrm{CDF}_{\mathrm{fitted}}(z_i) \right|$, where the fitted CDF for integer data is calculated using the discrete power-law distribution.
 
 #### 2. Bootstrapping Procedure
 
