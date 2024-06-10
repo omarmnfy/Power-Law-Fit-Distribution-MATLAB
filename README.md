@@ -96,7 +96,7 @@ The CDF of a random variable $X$ is a function that maps values to their cumulat
 The CDF provides a complete description of the distribution of a random variable. It allows us to calculate the probability that the random variable falls within a certain range. It’s useful for comparing different distributions and for goodness-of-fit tests.
 #### Continuous Case (REAL)
 
-$\text{Goodness of Fit (GoF)} = \max \left| \frac{i-1}{n_z} - \left( 1 - \left( \frac{x_{\text{min}}}{z_i} \right)^{\alpha - 1} \right) \right|$, where $n_z$ is the number of data points, $z ≥ x_{min}$​, $z_i$ is the sorted data points $z$, and $\alpha = 1 + \frac{n_z}{\sum_{i=1}^{n_z} \ln\left(\frac{z_i}{x_{\text{min}}}\right)}$.
+$\text{Goodness of Fit (GoF)} = \max \left| \frac{i-1}{n_z} - \left( 1 - \left( \frac{x_{\text{min}}}{z_i} \right)^{\alpha - 1} \right) \right|$, where $n_z$ is the number of data points, $z ≥ x_{min}$​, $z_i$ is the sorted data points $z$, and $\alpha = 1 + \frac{n_z}{\displaystyle \sum_{i=1}^{n_z} \ln\left(\frac{z_i}{x_{\min}}\right)}$.
 
 #### Discrete Case (INTS)
 
