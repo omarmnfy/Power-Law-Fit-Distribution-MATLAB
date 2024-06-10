@@ -116,7 +116,7 @@ $\text{Goodness of Fit (GoF)} = max$ $| CDF_{empirical}(z_i) - CDF_{fitted}(z_i)
 
 #### 3. p-value Calculation
 
-The p-value is the proportion of bootstrap GoF statistics that are greater than or equal to the empirical Goodness of Fit (GoF) statistic, such that $p = \left| \frac{1}{B}, where $B$ is the number of bootstrap samples, $\mathbb{I}(.)$ is the indicator function, which is 1 if the condition is true and 0 otherwise, $GoF$ is the GoF statistic for the $i$-th bootstrap sample, and $GoF_{empirical}$ is the GoF statistic for the empirical data.
+The p-value is the proportion of bootstrap GoF statistics that are greater than or equal to the empirical Goodness of Fit (GoF) statistic, such that $p = \left| \frac{1}{B}$, where $B$ is the number of bootstrap samples, $\mathbb{I}(.)$ is the indicator function, which is 1 if the condition is true and 0 otherwise, $GoF$ is the GoF statistic for the $i$-th bootstrap sample, and $GoF_{empirical}$ is the GoF statistic for the empirical data.
 
 ### Determination of p-value Factors
 
