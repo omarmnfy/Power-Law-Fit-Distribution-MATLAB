@@ -102,7 +102,7 @@ $\text{Goodness of Fit (GoF)} = \max \left| \frac{i-1}{n_z} - \left( 1 - \left( 
 
 For integer-valued data, $α$ is estimated using the method of maximum likelihood, where $L(\alpha) = -\alpha \displaystyle \sum_{i=1}^{n_z} \ln(z_i) - n_z \ln\left( \zeta(\alpha) - \displaystyle \sum_{x=1}^{x_{\min}-1} x^{-\alpha} \right)$.
 
-Here, $α$ is the value that maximizes the log-likelihood $L(α)$. $\zeta(\alpha)$ is the Riemann zeta function, which is defined as $\zeta(\alpha) = \sum_{k=1}^\infty k^{-{\alpha}}$
+Here, $α$ is the value that maximizes the log-likelihood $L(α)$. $\zeta(\alpha)$ is the Riemann zeta function, which is defined as $\zeta(\alpha) = \sum\limits_{k=1}^\infty k^{-\alpha}$.
 
 $\text{Goodness of Fit (GoF)} = \max \left| \text{CDF}_{\text{empirical}}(z_i) - \text{CDF}_{\text{fitted}}(z_i) \right|$, where the fitted CDF for integer data is calculated using the discrete power-law distribution.
 
