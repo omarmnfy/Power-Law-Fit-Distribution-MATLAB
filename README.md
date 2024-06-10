@@ -68,7 +68,7 @@ In the continuous case, the power-law distribution is represented as $p(x) = Cx^
 
 In the discrete case, the power-law distribution is represented as $p(x) = \frac{x^{-\alpha}}{\zeta(\alpha, x_{min})}$, where ${\zeta(\alpha, x_{min})}$ is the Hurwitz zeta function.
 
-1. **Hurwitz Zeta Function**: The Hurwitz zeta function is defined as ${\zeta(\alpha, x_{min})} = \sum_{n=0}^{\infty} (n + x_{\min})^{-\alpha}$.
+1. **Hurwitz Zeta Function**: The Hurwitz zeta function is defined as $\zeta(\alpha, x_{\min}) = \sum_{n=0}^{\infty} (n + x_{\min})^{-\alpha}$.
 2. **Maximum Likelihood Estimation for $\alpha$**: For discrete data, the MLE for $\alpha$ is found by solving the following equation numerically $\frac{\zeta'(\hat{\alpha}, x_{\min})}{\zeta(\hat{\alpha}, x_{\min})} = - \frac{1}{n} \sum_{i=1}^n \ln x_i$, where $\zeta'(\hat{\alpha}, x_{\min})$ is the derivative of the Hurwitz zeta function with respect to $\alpha$.
 3. **Estimating $x_{min}$**: Similar to the continuous case, the optimal $x_{min}$ is determined by iteratively testing different values and minimizing the KS statistic.
 
