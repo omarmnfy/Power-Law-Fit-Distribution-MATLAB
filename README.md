@@ -1,4 +1,4 @@
-# Power-Law Fitting Project
+# Power-Law Fitting Distribution
 
 ## Introduction
 
