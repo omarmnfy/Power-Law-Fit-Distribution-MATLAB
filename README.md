@@ -13,6 +13,7 @@ This project builds upon the methodologies presented in the research paper [Powe
 The MATLAB code for this project has been further developed based on the work presented in another notable research titled [Molecular motors robustly drive active gels to a critically connected state.](https://www.nature.com/articles/nphys2715) This research used the power-law fit MATLAB code to produce significant figures, demonstrating the practical application of these functions in cutting-edge scientific studies. This project aims to document and expand upon this code, providing detailed explanations and enhanced usability for researchers and analysts.
 
 By documenting and explaining the power-law fitting process in detail, this project serves as a comprehensive resource for those looking to understand and apply power-law models to their data. Whether for academic research, data analysis, or practical applications, the tools provided here offer robust solutions for fitting and validating power-law distributions.
+
 ## Power-Law Distribution
 
 A power-law distribution is a type of probability distribution that has the form: $P(x) \sim x^{-\alpha}$ where ${\alpha}$ is a positive constant known as the exponent or scaling parameter. In a power-law distribution, the probability of observing a value decreases polynomially with the size of the value.
@@ -60,7 +61,7 @@ The `plfit` function fits a power-law distribution to empirical data using maxim
 In the continuous case, the power-law distribution is represented as $p(x) = Cx^{-\alpha}$, where $\alpha$ is the scaling parameter and $C$ is the normalization constant. The goal is to estimate $\alpha$ and $x_{min}$ using maximum likelihood estimation (MLE).
 
 1. **Normalization Constant**: The normalization constant $C$ ensures that the total probability integrates to 1 over the range  $x \geq x_{min}$: $C = (\alpha - 1)x_{min}^{(\alpha-1)}$.
-2. **Maximum Likelihood Estimation for $\alpha$**: Given a set of observed values $x_{i}$ such that $x_i \geq x_{min}$, the MLE for the scaling parameter $\alpha$ is $\hat{\alpha} = 1+n\left[ \sum_{i=1}^n \ln \left( \frac{x_i}{x_{\min}} \right) \right]^{-1}$, where $n$ is the number of observations with $x \geq x_{min}$.
+2. **Maximum Likelihood Estimation for $\alpha$**: Given a set of observed values $x_{i}$ such that $x_i \geq x_{min}$, the MLE for the scaling parameter $\alpha$ is $\hat{\alpha} = 1 + n \left[ \sum\limits_{i=1}^n \ln \left( \frac{x_i}{x_{\min}} \right) \right]^{-1}$, where $n$ is the number of observations with $x \geq x_{min}$.
 3. **Estimating $x_{min}$**: 1. To find the optimal $x_{min}$, the function iteratively tests different values of $x_{min}$​ and selects the one that minimizes the Kolmogorov-Smirnov (KS) statistic, which measures the distance between the empirical distribution function and the fitted power-law model.
 
 #### Discrete Case (INTS)
