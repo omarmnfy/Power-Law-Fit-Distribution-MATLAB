@@ -1,5 +1,7 @@
 # Power-Law Fitting Distribution
 
+# Power-Law Fitting Project
+
 ## Introduction
 
 This project provides implementations of the `plfit` and `plpva` functions, which are essential for fitting power-law distributions to empirical data. Power-law distributions are significant in various fields, including physics, biology, economics, and social sciences, due to their ability to describe a wide range of natural and man-made phenomena.
@@ -11,6 +13,22 @@ A power-law distribution is a type of probability distribution that has the form
 \[ P(x) \sim x^{-\alpha} \]
 
 where \( \alpha \) is a positive constant known as the exponent or scaling parameter. In a power-law distribution, the probability of observing a value decreases polynomially with the size of the value.
+
+### Continuous Case
+
+For continuous data, a power-law distribution can be represented as:
+
+\[ p(x) = C x^{-\alpha} \]
+
+where \( C \) is a normalization constant.
+
+### Discrete Case
+
+For discrete data, a power-law distribution can be written as:
+
+\[ p(x) = \frac{x^{-\alpha}}{\zeta(\alpha, x_{min})} \]
+
+where \( \zeta(\alpha, x_{min}) \) is the generalized or Hurwitz zeta function.
 
 ## Importance of Power-Law Distributions
 
@@ -43,6 +61,19 @@ The `plpva` function performs a statistical test to determine whether the power-
 - Computes the p-value for the power-law fit.
 - Generates synthetic datasets for comparison.
 - Assesses the statistical significance of the fit.
+
+## Research Background
+
+This project is based on the research paper "Power-Law Distributions in Empirical Data" by Aaron Clauset, Cosma Rohilla Shalizi, and M. E. J. Newman (2009). The paper presents a principled statistical framework for discerning and quantifying power-law behavior in empirical data. The approach combines maximum-likelihood fitting methods with goodness-of-fit tests based on the Kolmogorov–Smirnov (KS) statistic and likelihood ratios.
+
+### Applying the Research
+
+The `plfit` and `plpva` functions implemented in this project utilize the methodologies described in the paper:
+
+1. **Maximum Likelihood Estimation (MLE)**: Used for fitting the power-law model to the data, providing robust parameter estimates.
+2. **Goodness-of-Fit Tests**: Based on the KS statistic, these tests help determine the plausibility of the power-law model.
+
+The MATLAB code provided in this project closely follows the algorithms and statistical techniques discussed in the paper, ensuring accurate and reliable power-law fits.
 
 ## Benefits of Power-Law Fitting
 
